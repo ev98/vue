@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in arr">
+                {{ index+1 }}校区：{{ item }}
+            </li>
+        </ul>
+        <h2 v-for="item in vegetables" :title="item.name">
+            {{ item.name }}
+        </h2>
+        <input type="button" value="添加数据" @click="add">
+        <input type="button" value="删除数据" @click="remove">
+        =====================================<br>
+        <input type="button" value="click" @click="doIt('老铁',666)">
+        <input type="text" @keyup.enter="sayHi">
+        =====================================<br>
+        <input type="button" @click="setMessage" value="修改">
+        <input type="text" v-model="message" @keyup.enter="getMessage">
+        <h2>
+            {{message}}
+        </h2>
+
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new new Vue({
+            el:"#app",
+            data:{
+                arr:["北京","上海","广州","深圳"],
+                vegetables:[
+                    {name:"西兰花炒蛋"},
+                    {name:"蛋炒西兰花"}
+                ],
+                message:"iffor=>import"
+            },
+            methods: {
+                add:function(){
+                    this.vegetables.push({name:"兰花炒西蛋"});
+                },
+                remove:function(){
+                    this.vegetables.shift();
+                },
+                doIt:function(p1,p2){
+                    console.log("doIt");
+                    console.log(p1);
+                    console.log(p2);
+                },
+                sayHi:function(){
+                    alert("吃了吗");
+                },
+                getMessage:function(){
+                    alert(this.message);
+                },
+                setMessage:function(){
+                    this.message="我好瘦";
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="mask">
+        <div class="center">
+            <!-- 箭头 -->
+            <a href="javascript:void(0)" class="left" @click="prev">
+                左箭头
+            </a>
+            <a href="javascript:void(0)" class="right" @click="next">
+                右箭头
+            </a>
+            <!-- 图片 -->
+            <img :src="imgArr[index]">
+        </div>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new new Vue({
+            el: "#mask",
+            data: {
+                imgArr: [
+                    "./img/1.jpg",
+                    "./img/2.jpg",
+                    "./img/3.jpg",
+                    "./img/4.jpg",
+                    "./img/5.jpg",
+                    "./img/6.jpg",
+                    "./img/7.jpg",
+                    "./img/8.jpg",
+                ],
+                index: 0
+            },
+            methods: {
+                prev: function () {
+                    if (this.index == 0) {
+                        this.index = 7
+                    } else {
+                        this.index--;
+                    }
+                },
+                next: function () {
+                    if (this.index == 7) {
+                        this.index = 0;
+                    } else {
+                        this.index++;
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

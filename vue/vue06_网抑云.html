@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网抑云</title>
+</head>
+
+<body>
+    <div id="player">
+        <h1>网抑云</h1>
+        <!-- 搜索 -->
+        <div>
+            <input type="text" v-model="query" @keyup.enter="searchMusic">
+            <button @click="searchMusic">搜索</button>
+        </div>
+        <!-- 歌曲信息容器 -->
+        <!-- <div>
+            <img :src="musicCover">
+        </div> -->
+        <!-- 播放条 -->
+        <div>
+            <audio controls autoplay :src="musicUrl" @play="play" @pause="pause"></audio>
+            <span v-show="isPlaying">
+                正在播放...
+            </span>
+        </div>
+        <!-- MV -->
+        <div v-show="isShow" style="display: none;">
+            <video controls autoplay :src="musicMV"></video>
+            <input type="button" value="关闭" @click="hide">
+        </div>
+        <!-- 热门评论 -->
+        <div>
+            <ul v-for="item in hotComments">
+                <!-- <dt>
+                    <img :src="item.user.avatarUrl">
+                </dt> -->
+                <!-- <dd>
+                    {{item.nickname}}
+                </dd> -->
+                <li>
+                    {{item.content}}
+                </li>
+            </ul>
+        </div>
+        <!-- 歌曲列表 -->
+        <div>
+            <ul v-for="item in musicList">
+                <li>
+                    <a href="javascript:;" @click="playMusic(item.id)">播放</a>
+                    <b>
+                        {{item.name}}
+                    </b>
+                    <span v-if="item.mvid!=0"><a @click="playMV(item.mvid)">MV</a></span>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 自己的js -->
+    <script src="./js/06main.js"></script>
+</body>
+
+</html>
